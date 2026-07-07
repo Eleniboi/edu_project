@@ -1,0 +1,33 @@
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+	fmt.Println(cap("sAmuél"))
+}
+func cap(s string) string {
+
+	var result string
+	var build strings.Builder
+
+	for i, r := range s {
+
+		
+		if r >= 'A' && r <= 'Z' && i != 0 {
+			r = r + 32
+
+		} else {
+			if r >= 'a' && r <= 'z' && i == 0 {
+				r = r - 32
+			}
+		}
+		build.WriteRune(r)
+
+	}
+	result = build.String()
+	build.Reset()
+	return result
+}
