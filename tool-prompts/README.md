@@ -1,0 +1,3 @@
+# tool-prompts
+
+This exercise show how to create a tool-using AI agent by chaining three prompts. First, the agent collects a user query (e.g., asking for weather information). Next, it simulates a tool/API call (like fetching weather data). Finally, the agent formats and returns a user-friendly output based on the simulated tool output. This approach mimics real-world AI agent workflows, demonstrating how multi-step reasoning, API integration, and response formatting work together to provide accurate, structured answers to users.

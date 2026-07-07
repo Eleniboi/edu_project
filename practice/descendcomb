@@ -1,0 +1,15 @@
+package main
+
+
+import (
+	"fmt"
+)
+
+func descendcomb() {
+
+	for i := 99; i >= 0; i--{
+		for P := 98; P >= 1; P--{
+			fmt.Printf("%02d %02d, ", i, P)
+		}
+	}
+}

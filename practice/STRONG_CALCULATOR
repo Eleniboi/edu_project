@@ -1,0 +1,89 @@
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+	"strings"
+)
+
+func Help() {
+	fmt.Println("\033[32;1m--To Have A Smooth Experience--\033[0m")
+	fmt.Println("You Can The Example Below")
+	fmt.Println("add 87 98   → addition")
+	fmt.Println("sub 8 37   → subtraction")
+	fmt.Println("mul 93 9   → multiplication")
+	fmt.Println("div 80 4  → division")
+	fmt.Println("Help ----> For This menu")
+	fmt.Println("Quit ----> To Exit")
+}
+
+func main() {
+
+	scanner := bufio.NewScanner(os.Stdin)
+
+	fmt.Println("\033[32;1m--Welcome To CLI CALCULATOR--\033[0m")
+	fmt.Println("\033[37;1m-Enter Help for Guide or Quit to Exit-\033[0m")
+
+	for {
+
+		fmt.Println("Enter A Command or Quit to Exit: ")
+
+		scanner.Scan()
+
+		input := scanner.Text()
+		check := strings.Fields(input)
+
+		if len(check) == 0 {
+			continue
+		}
+		command := strings.ToLower(check[0])
+
+		if command == "Quit" || command == "quit" {
+			fmt.Println("\033[33;1m-GOODBYE!!\033[0m")
+			break
+		}
+		if command == "Help" || command == "help" {
+			Help()
+			continue
+		}
+
+		if len(check) != 3 {
+			fmt.Println("Invalid Input Enter help for Guide or Quit to Exit")
+			continue
+		}
+
+		a, err1 := strconv.ParseFloat(check[1], 64)
+		b, err2 := strconv.ParseFloat(check[2], 64)
+
+		if err1 != nil || err2 != nil {
+			fmt.Println("Invalid Number, Input Only Digit e.g 66 44,  83 2")
+			continue
+		}
+
+		switch command {
+		case "add":
+			fmt.Println("\033[34;1m-Result:\033[0m ", a+b)
+			continue
+		case "sub":
+			fmt.Println("\033[34;1m-Result:\033[0m ", a-b)
+			continue
+		case "mul":
+			fmt.Println("\033[34;1m-Result:\033[0m ", a*b)
+			continue
+		case "div":
+			if b == 0 {
+				fmt.Println(a, "is not divisible by", b)
+			} else {
+				fmt.Println("\033[34;1m-Result:\033[0m ", a/b)
+				continue
+			}
+		default:
+			fmt.Println("Invalid command, Enter Help for Guide")
+			continue
+
+		}
+
+	}
+}

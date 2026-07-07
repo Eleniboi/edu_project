@@ -1,0 +1,57 @@
+package main
+
+import (
+	"fmt"
+	"strconv"
+	"strings"
+	"testing"
+)
+
+func Upper(s string) string {
+
+	return strings.ToUpper(s)
+
+}
+
+func hex(s string) string {
+
+	text := strings.Fields(s)
+
+	for i, value := range text {
+
+		if value == "(hex)" {
+			n, _ := strconv.ParseInt(text[i-1], 16, 64)
+
+			text[i-1] = fmt.Sprint(n)
+			text = append(text[:i], text[i+1:]...)
+			i--
+		}
+	}
+	return strings.Join(text, " ")
+}
+
+
+// this is the test function for upper
+func TestUpper(t *testing.T) {
+
+	text := Upper("Hello")
+	expected := "HELLO"
+
+	if text == expected {
+		// this is a bad practice Go does not care about Println here 
+		fmt.Println("Your function works well, ", expected, "✔️")
+	} else if text != expected {
+		t.Errorf("Exepected %s but output %s, ", expected, text)
+	}
+}
+
+//this is the test func for hex
+func TestHex(t *testing.T) {
+
+	input := hex("1e (hex) file today")
+	expected := "30 file today"
+
+	 else if input != expected {
+		t.Errorf(`Expected "30 file today" got %s, `, input)
+	}
+}

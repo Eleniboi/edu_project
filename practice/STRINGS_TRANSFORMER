@@ -1,0 +1,126 @@
+// CodeCrafters — Operation Gopher Protocol
+// Module: String_Transformer
+// Author: [Omafu Samuel]
+// Squad:  [The Struct]
+
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+)
+
+func toUpper(s []string) string {
+	return strings.ToUpper(strings.Join(s, " "))
+
+}
+
+func Tolower(s []string) string {
+	return strings.ToLower(strings.Join(s, " "))
+}
+
+func title(s []string) string {
+
+	for i := 0; i < len(s); i++ {
+		s[i] = strings.ToUpper(string(s[i][0])) + strings.ToLower(s[i][1:])
+	}
+	return strings.Join(s, " ")
+}
+
+func Snake(s []string) string {
+	return strings.Join(s, "_")
+}
+
+func Reverse(s []string)string{
+
+	result := strings.Join(s, " ")
+	runes := []rune(result)
+	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1{
+
+		runes[i], runes[j] = runes[j], runes[i]
+	}
+	return string(runes)
+}
+
+func Fields(s []string)[]string{
+	return s
+}
+
+
+
+
+func Help() {
+	fmt.Println("\n " + "\n"+"\033[40;1m--FOR SMOOTH EXPERIENCE FOLLOW THE GUIDE LINE👇👇\033[0m")
+	fmt.Println("Type one of these: 'cap','rev','up','low','tit','snk'"+" ")
+	fmt.Println("up  'your input', --->  ToUppercase")
+	fmt.Println("low 'your input', --->  ToLowercase")
+	fmt.Println("tit 'your input', --->  To Titlecase")
+	fmt.Println("snk 'your input', --->  To Snakecase")
+	fmt.Println("Fd  'your input', --->  Fields")
+	fmt.Println("Rev 'your input', --->  Reversed version ")
+	fmt.Println("quit ----> To Exit the  Program")
+}
+func main() {
+	scanner := bufio.NewScanner(os.Stdin)
+
+	fmt.Println("\n " + "\n"+"\n" + "\n"+"\033[37;1m      --WELCOME TO THE STRING TRANSFORMER🪄--\033[0m")
+	fmt.Println(" \033[31m        🤔Still Thinking💭 of what to do??")
+	fmt.Println("\033[32;1m--Enter 'Help' for Guide line, or 'quit' to Exit--\033[0m")
+ 
+	for {
+		fmt.Print("\033[32;1m >>\033[0m ")
+		scanner.Scan()
+
+		input := scanner.Text()
+		input = strings.ToLower(scanner.Text())
+
+		if input == "help" {
+			Help()
+			continue
+		}
+
+		if input == "quit" {
+			fmt.Println("\033[35;1m--GoodBye💫\033[0m")
+			break
+		}
+		if len(input) == 0 {
+			fmt.Println("Empty Input, Enter help for Guide line")
+			continue
+		}
+
+		part := strings.Fields(input)
+
+		if len(part) < 2 {
+			fmt.Println("Not Enough command, Enter help for Guide line")
+			continue
+		}
+
+		command := part[0]
+		Str := (part[1:])
+
+		switch command {
+		case "up":
+			fmt.Println("Upper version: ",toUpper(Str))
+			continue
+		case "low":
+			fmt.Println("Lower version: ",Tolower(Str))
+			continue
+		case "tit":
+			fmt.Println("Titled version: ",title(Str))
+			continue
+		case "snk":
+			fmt.Println("Snake case: ",Snake(Str))
+			continue
+		case "fd" : 
+			fmt.Println("Field version: ", Fields(Str))
+		case "rev" :
+			fmt.Println("Reverse: ",Reverse(Str))
+			continue
+		default :
+			fmt.Println("Not a command, Type help for guide line")
+			continue
+	}
+}
+}

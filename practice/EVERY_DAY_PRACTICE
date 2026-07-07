@@ -1,0 +1,370 @@
+// 17/3/2026:NOTE: not perfect yet 
+//This function return the mid character in a string
+// and i will also modify it to bring out the half of the string
+
+
+package main
+
+import (
+	"fmt"
+	
+	//"strings"
+	//"strings"
+)
+
+func lastChar(b string) string {
+
+	return string(b[len(b)/2])
+}
+
+func main() {
+
+	fmt.Println(lastChar("helloworld"))
+}
+
+//DATE: 18/3/2026 output the first half of the string
+
+package main
+
+import (
+	"fmt"
+	//"strings"
+)
+
+func LastLetter(s string)(string){
+	return s[len(s)/2:]
+}
+func main() {
+	fmt.Println(LastLetter("helloworld"))
+}
+
+//18/3/2026:
+//This function dectect and return UPPERCASE if the value in command == "up" it returns LOWERCASE if command == "low" and UNKNOWN if the command is not found 
+
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func DetectCommand(s string) string {
+
+	s = strings.TrimSpace(s)
+
+	if strings.HasPrefix(s, "(") && strings.HasSuffix(s, ")") {
+
+		command := s[1 : len(s)-1]
+
+		if command == "up" {
+			return "UPPERCASE"
+		} else if command == "low" {
+			return "LOWERCASE"
+		} else {
+			return "UNKNOWN"
+		}
+	}
+
+	return "NOT A COMMAND"
+}
+
+func main() {
+
+	fmt.Println(DetectCommand("   (up)   "))
+	fmt.Println(DetectCommand("   (low)   "))
+	fmt.Println(DetectCommand("   (hex   "))
+
+}
+
+//19/3/2026
+//THIS FUNCTION RETURNS THE FIRST CHARACTER IN A STRING,, IT IS PREFERABLE TO USE RANGE LOOP THAN A CLASSICAL LOOP
+/*
+package main 
+
+import (
+	"fmt"
+)
+
+func FirstChar(s string) string {
+	for _, r := range s {
+		return string(r)
+		}
+		return s
+	}
+
+
+func main() {
+	fmt.Println(FirstChar("éllo"))
+	fmt.Println(FirstChar("Go"))
+	fmt.Println(FirstChar(""))
+	fmt.Println(FirstChar("👍THUMB"))
+	fmt.Println(FirstChar("非英语éllo"))
+}
+*/
+
+// 19/3/2026
+/*THIS FUNCTION COUNT THE NUMBER OF UPPERCASE LETTER IN A STRING
+package main
+
+import (
+	"fmt"
+	"unicode"
+)
+
+func CountUpper(s string)int{
+	count := 0
+	for _, r := range s {
+		if unicode.IsUpper(r){
+			count++
+		}
+	} 
+	return count
+}
+
+func main() {
+	fmt.Println(CountUpper("hhhHHHH"))
+	fmt.Println(CountUpper("giGe"))
+	fmt.Println(CountUpper("hhhHHPPPPHH"))
+}
+*/
+
+THIS FUNCTION REVERSE AND PRINT THE REVERSED VERSION OF THE STRING e.g samuel😊 -> 😊leumas
+package main 
+
+import (
+	"fmt"
+)
+
+func Reverse(s string) string{
+
+	runes := []rune(s)
+
+	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1{
+		runes[i], runes[j] = runes[j], runes[i]
+	}
+
+	return string(runes)
+}
+
+func main() { 
+	fmt.Println(Reverse("samuel😊"))
+	fmt.Println(Reverse("madam"))
+	fmt.Println(Reverse("bobo"))
+}
+
+THIS FUNCTION CHECKS IF A STRING IS A PALINDROME AND RETURN TRUE ELSE RETURN FALSE
+
+package main 
+
+import (
+	"fmt"
+	"strings"
+)
+
+func IsPalindrome(s string)bool {
+	if s == "" { // this line handle empty string
+		return false
+	}
+
+	s = strings.ToLower(s) // this turn the whole string to lower case 
+
+	runes := []rune(s)
+
+	for i, j := 0, len(runes)-1; i < j; i,j = i+1, j-1{
+		if runes[i] == runes[j]{
+			return true
+		}
+	}
+	return false
+}
+
+func main() {
+	fmt.Println(IsPalindrome("Madam"))
+	fmt.Println(IsPalindrome("adam"))
+	fmt.Println(IsPalindrome(""))
+
+
+}
+
+//20/3/2026
+// THIS FUNCTION CAPITALIZE THE FIRST AND LAST LETTER OF A STRING
+
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func FandL(s string) string {
+
+	s = strings.ToLower(s)
+	s = strings.ToUpper(s[:1]) + s[1:]
+	s = s[:len(s)-1] + strings.ToUpper(string(s[len(s)-1]))
+	return s
+}
+
+func main() {
+	fmt.Println(FandL("heLLo"))
+}
+
+//THIS FUNCTION CAPITALIZE THE FIRST AND LAST WORD IN A SLICE OF STRING
+package main 
+
+import (
+	"fmt"
+	"strings"
+)
+
+func UpperN(s []string)[]string{
+	if len(s)== 0 {
+		return s
+	}
+
+	result := make([]string, len(s))
+
+	for i, word := range s {
+		if i == 0 || i == len(s)-1{
+			result[i] = strings.ToUpper(word)
+		}else{
+			result[i] = strings.ToLower(word)
+		}
+	}
+	return result
+}
+
+func main() {
+	fmt.Println(UpperN([]string{"hi","HOW","ARE","you"}))
+}
+
+//THIS FUNCTION CAPITALIZE ONLY THE ON EVEN INDEX AND LEAVE THE REST LOWER CASE 
+
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func CapFirst(s string)string{
+	for i := 0; i < len(s); i++{
+		if i % 2 == 0{
+			fmt.Print(strings.ToUpper(string(s[i])))
+		}else if i %  2 != 0{
+			fmt.Print(strings.ToLower(string(s[i])))
+		}
+	}
+	return ""
+}
+
+func main() {
+	fmt.Println(CapFirst("hELLo"))
+}
+
+//THIS FUNCTION REPLACE THE FIRST AND LAST WORD WITH START AND END RESPECTIVELY
+
+//THIS FUNCTION fixArticleS
+package main 
+
+import (
+	"fmt"
+	"strings"
+)
+
+func fixArticle(s string)string{
+
+	result := strings.Fields(s)
+	for i := range result{
+		if result[i] == "a" && strings.Contains("aeiouhAEIOUH", string(result[i+1][0])){
+			result[i] = "an"
+		}
+	}
+	return strings.Join(result, " ")
+}
+
+func main() {
+	fmt.Println(fixArticle("a book  and a orange is a apple"))
+}
+//THIS FUNCTION UPPERCASE THE PREVIOUS WORD WHEN IT SEES THE COMMAND (up) and if a number is inserted it work according to the number
+package main 
+
+import (
+	"fmt"
+	"strings"
+)
+
+func command(words []string, n int) []string {
+	for i := 0; i < len(words); i++ {
+		if words[i] == fmt.Sprintf("(up,%d)", n) {
+			
+			for j := 1; j <= n; j++ {
+				if i-j >= 0 {
+					words[i-j] = strings.ToUpper(words[i-j])
+				}
+			}
+			words = append(words[:i], words[i+1:]...)
+			i--
+		}
+	}
+	return words
+}
+func main(){
+	fmt.Println(command([]string{"so","lovable","wow","(up,2)"}, 2))
+}
+
+//Struct and how to use struct as a method
+
+package main 
+
+import (
+	"fmt"
+)
+
+
+type Person struct{
+	Name string
+	Age int
+	Job string
+}
+
+//so here we are creating a method using a pointer
+func (p *Person) name()  string{
+	return p.Name
+}
+
+func main() {
+
+	// this is an instance of the struct Person
+	per1 := Person{Name: "samuel", Age: 17, Job: "Software Engineer"}
+	per2 := Person{Name: "John", Age: 15, Job: "Hacker"}
+
+	//This is a slice of struct
+	per3 := []Person{per1, per2}
+
+	fmt.Println(per3)
+	fmt.Println(per1.name())
+
+}
+
+
+//////////////////////////////////////
+package main
+
+import "strings"
+
+func command(s string) string {
+
+	result := strings.Fields(s)
+	for i := 0; i < len(result); i++ {
+		if strings.HasPrefix(result[i], "(") && strings.HasSuffix(result[i], ")") && i > 0 {
+			cmd := strings.TrimSpace(result[i][1 : len(result[i])-1])
+
+			switch cmd {
+			case "up":
+				result[i-1] = strings.ToUpper(result[i-1])
+				result = append(result[:i], result[i+1:]...)
+			}
+		}
+	}
+	return strings.Join(result, " ")
+}

@@ -1,0 +1,1 @@
+Using delimiter differenciat between instruction and data , it gives the AI a clear understanding on what to do

@@ -1,0 +1,108 @@
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
+
+func main() {
+
+	if len(os.Args) != 3 {
+		fmt.Println("invalid input: usage go run . input.txt output.txt")
+		return
+	}
+
+	inputfile := os.Args[1]
+	outputfile := os.Args[2]
+
+	INfile, err := os.Open(inputfile)
+
+	if err != nil {
+		fmt.Println("Error opening file, ", err)
+		return
+	}
+
+	defer INfile.Close()
+
+	OUTfile, err := os.Create(outputfile)
+
+	if err != nil {
+		fmt.Println("Error creating file, ", err)
+		return
+	}
+
+	defer OUTfile.Close()
+
+	scanner := bufio.NewScanner(INfile)
+	writer := bufio.NewWriter(OUTfile)
+
+	for scanner.Scan() {
+
+		line := scanner.Text()
+		line = upper(line)
+
+		_, err := writer.WriteString(line + "\n")
+		if err != nil {
+			fmt.Println("error writing,", err)
+			return
+		}
+
+	}
+	writer.Flush()
+}
+
+
+////////////////////////////////////////////////////////////////
+THIS FUNCTION READ FILE, AND ADD NEWLINE MANUALLY USING THE NEWLINER FUNCTION
+
+package main
+
+import (
+	"Go_RELOADED2/texttool"
+	"fmt"
+	"os"
+	"strings"
+)
+
+func main() {
+
+	if len(os.Args) != 3 {
+		fmt.Println("Invalid command: usage go run . input.txt output.txt")
+		return
+	}
+
+	inputfile := os.Args[1]
+	outputfile := os.Args[2]
+
+	file, err := os.ReadFile(inputfile)
+	if err != nil {
+		fmt.Println("Error reading file: ", err)
+		return
+	}
+
+	text := string(file)
+	text = strings.ToUpper(NewLiner(text))
+
+	err = os.WriteFile(outputfile, []byte(text), 0644)
+	if err != nil {
+		fmt.Println("Error: writing file", err)
+		return
+	}
+}
+
+func NewLiner(s string) string {
+
+	text := strings.Split(s, "\n")
+
+	for i := 0; i < len(text); i++ {
+
+		text[i] = texttool.ToDecimal(text[i])
+		text[i] = texttool.Command(text[i])
+		text[i] = texttool.CommandN(text[i])
+		text[i] = texttool.Punctuation(text[i])
+		text[i] = texttool.Article(text[i])
+		text[i] = texttool.Quote(text[i])
+	}
+	return strings.Join(text, "\n")
+}

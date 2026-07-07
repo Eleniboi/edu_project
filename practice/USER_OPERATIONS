@@ -1,0 +1,53 @@
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+	
+	var inputWord string
+	var Opperation string
+	var indexdelect int
+	for {
+	fmt.Print("Input a word: ")
+	fmt.Scanln(&inputWord)
+
+	fmt.Print("Select An Opperation: 1. last,  2. cap, 3. del: ")
+	fmt.Scanln(&Opperation)
+
+	if Opperation == "last" || Opperation == "Last" {
+		fmt.Println("The last word is: ", string(inputWord[len(inputWord)-1]))
+		continue 
+
+	}else if Opperation == "cap" || Opperation == "Cap" {
+		fmt.Println("This is the cap version: ", strings.ToUpper(inputWord) )
+		continue 
+
+	
+     
+	}else if Opperation == "Del" || Opperation == "del" {
+		fmt.Print("Which index do you want to delete: ")
+		fmt.Scanln(&indexdelect)
+
+		INDEX := len(inputWord)-1
+
+		if indexdelect > INDEX {
+			fmt.Println("The available range is 0 -> ", INDEX)
+		}else{
+				inputWord = inputWord[:indexdelect] + inputWord[indexdelect+1:]
+				fmt.Println("Result:", inputWord)
+				
+				 return
+		}
+		
+	}
+		
+	}// INDEX := len(inputWord)-1
+	//  fmt.Println(INDEX)
+}
+// ask the user to input the a word and ask the user to select an Opperation 
+//if user select last -> return the last letter of the word
+//if user select capitalise -> capitalized all the word
+//if user select delete pacticular index, ask the user to input a particular index, if the user input an index that is out of range , tell the user the available range , and restart the program

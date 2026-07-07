@@ -1,0 +1,115 @@
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
+
+func main() {
+	input := "A"
+	file, err := os.Open("standard.txt")
+
+	if err != nil {
+		fmt.Println("Error opening file")
+		return
+	}
+
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+
+	var lines []string
+
+	for scanner.Scan() {
+
+		lines = append(lines, scanner.Text())
+	}
+
+	for _, r := range input{
+
+		index := (r - 32)
+
+		start := index * 9
+
+		charBlock := lines[start: start+8]
+
+		for i := 0; i < len(charBlock); i++{
+			
+		}
+		fmt.Println(charBlock)
+	}
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
+
+func main() {
+
+	input := "Ab"
+
+	file, err := os.Open("standard.txt")
+
+	if err != nil {
+		fmt.Println("Error opening file, ", err)
+		return
+	}
+
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+
+	var lines []string
+
+	for scanner.Scan() {
+
+		lines = append(lines, scanner.Text())
+	}
+
+	for i := 0; i < 8; i++{
+
+		for _, r := range input{
+
+			index := int(r - 32)
+
+			start := index * 9
+
+			fmt.Print(lines[start+i])
+		}
+		fmt.Println()
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// var result string
+// 	for i := 0; i < 8; i++ {
+
+// 		for _, r := range input {
+
+// 			index := int(r - 32)
+
+// 			start := index * 9
+
+// 			result += (lines[start+i])
+// 		}
+// 		result += "\n"
+// 	}
+// 	fmt.Println(result)
+// }

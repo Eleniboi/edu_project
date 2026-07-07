@@ -1,0 +1,103 @@
+package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func add(a, b int) int {
+
+	return a + b
+}
+func sub(a, b int) int {
+
+	return a - b
+}
+
+func mul(a, b int) int {
+
+	return a * b
+}
+
+func div(a, b int) int {
+
+	return a / b
+}
+
+func help(){
+	fmt.Println("TO USE THIS CALCULATOR SMOOTHLY ENTER: ")
+	fmt.Println("add   → addition")
+	fmt.Println("sub   → subtraction")
+	fmt.Println("mul  → multiplication")
+	fmt.Println("div  → division")
+
+}
+
+func main() {
+
+	for {
+		fmt.Println("CLI CALCULATOR")
+		var input1 string
+		var input2 string
+		fmt.Print("Select Opperations: \n add \n sub \n mul \n div \n Quit --> To Exit \n help --> For Guide \n Select operation to continue... ")
+		var Op string
+		fmt.Scanln(&Op)
+
+		if Op == "quit" || Op == "Quit"{
+			fmt.Println("GOODBYE!!!")
+			break
+		}
+		
+		fmt.Print("Enter first number: ")
+
+		fmt.Scanln(&input1)
+		a, err1 := strconv.Atoi(input1)
+
+		if err1 != nil {
+			fmt.Println("Invalid Input, Input must be a number")
+			continue
+
+		}
+		fmt.Print("Enter second number: ")
+
+		fmt.Scanln(&input2)
+		b, err2 := strconv.Atoi(input2)
+
+		if err2 != nil {
+
+			fmt.Println("invalid input, input must be a number")
+			continue
+		}
+		
+		// Operation line
+		switch Op {
+		case "add", "Add":
+			
+			fmt.Println("result: ", add(a, b))
+			continue
+		case "sub", "Sub":
+			fmt.Println("result: ", sub(a, b))
+			continue
+
+		case "mul", "Mul":
+			fmt.Println("result: ", mul(a, b))
+			continue
+		case "div", "Div":
+			if b == 0 {
+				fmt.Println(a, "is not divisible by ", b)
+				continue
+			}
+			if a%b != 0 {
+				fmt.Println("Input number: ", a, " is not Divisible by, ", b)
+				continue
+			} else {
+				fmt.Println("return: ", div(a, b))
+			}
+		case "help", "Help" :
+			help()
+			continue
+				
+		}
+	
+	}
+}

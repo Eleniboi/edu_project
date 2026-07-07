@@ -1,0 +1,39 @@
+package main 
+
+
+import (
+	"fmt"
+	"os"
+	"bufio"
+)
+
+func main() {
+
+	scanner := bufio.NewScanner(os.Stdin)
+	writer := bufio.NewWriter(os.Stdout)
+
+	fmt.Println("\033[31m----SECURITY CHECK----\033[0m")
+	Count:= 4
+
+	for {
+
+		fmt.Print("\033[34;1m---Enter password:---\033[0m")
+		scanner.Scan()
+
+		password := scanner.Text()
+
+		if password == "God001"{
+			writer.WriteString("Successful login")
+			writer.Flush()
+			break
+		}else{
+			fmt.Println("Invalid Input, you have ", Count,"more times to TRY AGAIN❗")
+		}
+		if Count == 0{
+			writer.WriteString("You are not the real USER")
+			writer.Flush()
+			break
+		}
+		Count--
+	}
+}

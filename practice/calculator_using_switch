@@ -1,0 +1,62 @@
+package main
+
+import "fmt"
+
+func add(a int, b int) int {
+	return a + b
+}
+func substract(a int, b int) int {
+	return a - b
+}
+func divide(a int, b int) int {
+	return a / b
+}
+
+func main() {
+	var op string
+	for {
+		fmt.Print("choose operation: add , substract , divide. exit ")
+		_, err := fmt.Scanln(&op)
+
+		if err != nil {
+			fmt.Println("invalid input")
+			return
+		}
+
+		if op == "exit" || op == "Exit" {
+			fmt.Println("Goodbye")
+			return
+		}
+		var num1, num2 int
+		switch op {
+		case "Add", "add":
+			fmt.Print("Enter first number: ")
+			fmt.Scanln(&num1)
+
+			fmt.Print("Enter second number: ")
+			fmt.Scanln(&num2)
+
+			result := add(num1, num2)
+			fmt.Println("Result: ", result)
+		case "substract", "Substract":
+			fmt.Print("Enter first number: ")
+			fmt.Scanln(&num1)
+
+			fmt.Print("Enter second number: ")
+			fmt.Scanln(&num2)
+
+			result := substract(num1, num2)
+			fmt.Println("Result: ", result)
+
+		case "divide", "Divide":
+			fmt.Print("Enter first number: ")
+			fmt.Scanln(&num1)
+
+			fmt.Print("Enter second number: ")
+			fmt.Scanln(&num2)
+
+			result := divide(num1, num2)
+			fmt.Println("Result: ", result)
+		}
+	}
+}

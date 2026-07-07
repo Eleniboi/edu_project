@@ -1,0 +1,207 @@
+package main
+
+import (
+	"fmt"
+	"strconv"
+	"strings"
+)
+
+func Tittle(s string) string {
+
+	F := strings.Title
+	return F(strings.ToLower(s))
+}
+
+func capAll(s string) string {
+	if s == "" {
+		return s
+	}
+	return strings.ToUpper(s)
+}
+
+func HexToDecimal(input string, base int) (int64, error) {
+
+	n, err := strconv.ParseInt(input, 16, 64)
+
+	if err != nil {
+		return 0, err
+	}
+	return n, nil
+}
+
+func FirstCap(s string) string {
+	return strings.ToUpper(s[:1]) + strings.ToLower(s[1:])
+}
+
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+// this function change the last two words to Uppercase leaving the previous lower case
+func LastTwoToUpper(words []string, n int) []string {
+	if n >= len(words)-1 {
+		n = len(words)
+	}
+	for i := len(words) - n; i < len(words); i++ {
+		words[i] = strings.ToUpper(words[i])
+	}
+	return words
+}
+
+func main() {
+	words := []string{"small", "rat", "what", "is", "wrong"}
+	fmt.Println(LastTwoToUpper(words, 2))
+}
+
+
+
+func main() {
+
+	fmt.Println(capFirst("hello"))
+	fmt.Println(Tittle("sAMUEL"))
+	fmt.Println(ToDecimal("1E", 10))
+	fmt.Println(ToDecimal("FF", 10))
+
+	fmt.Println(bin("how You"))
+	text := "sammy what up with you brother man"
+	var words []string = text
+	fmt.Println(Fields(len(words)))
+
+}
+
+
+package main 
+
+
+import (
+	"fmt"
+	"unicode"
+)
+// "Gooo" -> "letter"
+// "727" -> "digit"
+// "!?," -> "punctuation"
+
+func CheckPrint(s string) string{
+	for _, r := range s {
+		if unicode.IsDigit(r){
+			return "digit"
+		}else if unicode.IsLetter(r){
+			return "letter"
+		}else if unicode.IsPunct(r){
+			return "punctuation"
+		}
+	}
+	return "invalid"
+}
+
+func main() {
+	fmt.Println(CheckPrint("Gooo"))
+	fmt.Println(CheckPrint("727"))
+	fmt.Println(CheckPrint("!,?"))
+}
+
+1. FIXQUOTES
+
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func fixQuotes(text string) string {
+	text = strings.Trim(text, " '")
+	return "'" + text + "'"
+}
+
+func main() {
+	sam := " ' God is Good ' "
+	omafu := "  ' You are great '  "
+
+	sam = fixQuotes(sam)
+	omafu = fixQuotes(omafu)
+
+	fmt.Printf("%q\n", sam)
+	fmt.Printf("%q\n", omafu)
+
+}
+//THIS FUNCTION FIX PUNCTION TO THE PREVIOUS WORD
+package main 
+
+import (
+	"fmt"
+	"strings"
+)
+
+func fixPunct(s []string)string{
+	result := ""
+	for i, word := range s {
+	if i > 0 && !strings.ContainsAny(word, "?.,:;!"){
+		result += " "
+	}
+	result += word
+	}
+	return result
+}
+
+func main() {
+	fmt.Println(fixPunct([]string{"hello",",","world","!"}))
+}
+
+package main 
+
+import (
+	"fmt"
+	"strings"
+)
+func command(word []string, n int) []string{
+
+	for i := 0; i < len(word); i++{
+		if word[i]== "(up,2)" || word[i] == "(up, 2)"{
+
+			for j := i-1; j >= i-n && j >= 0; j--{
+			word[j] = strings.ToUpper(word[j])
+		}
+			word = append(word[:i], word[i+1:]...)
+		i--
+	}
+	}
+	return word 
+}
+
+func fixPunct(s string)string{
+
+	result := strings.Fields(s)
+	Nword := ""
+	for i, word := range result{
+		if i > 0 && !strings.ContainsAny(word, ",.:;?!"){
+			Nword += " "
+		}
+		Nword += word
+	}
+	return Nword
+
+}
+
+func fixArticle(s string)string{
+	//s = strings.Replace(s, "a", "an", 1)
+	result := strings.Fields(s)
+
+	for i := range result{
+		if result[i] == "a" && strings.Contains("aeiouhAEIOUH", string(result[i+1][0])){
+			result[i] = "an"
+		}else if result[i] == "an" && !strings.Contains("aeiouhAEIOUH", string(result[i+1][0])){
+			result[i] = "a"
+		}
+	}
+	return strings.Join(result, " ")
+}
+
+
+func main() {
+	fmt.Println(command([]string{"my","brother","is","a", "great", "guy","(up,2)","you","too","sabi","(up, 2)","boy"}, 2))
+	fmt.Println(fixPunct("what ? wow !"))
+	fmt.Println(fixArticle("i ate a apple with a orange, an book"))
+}
