@@ -1,0 +1,108 @@
+.head{
+    margin-left: 5%;
+    text-shadow: 0 0 20px  rgb(2, 0, 0);
+    color: rgb(223, 26, 26);
+    font-style: italic;
+    text-align: center;
+}
+
+.headR{
+    text-shadow: 0 0 20px  rgb(2, 0, 0);
+    color: rgb(223, 26, 26);
+    font-style: italic;
+    text-align: center;
+}
+
+
+.form{
+    
+    margin: 0;
+    display: grid;
+    place-content: center;
+}
+/* 
+.label{
+    text-shadow: 0 0 10px rgb(248, 245, 245);
+} */
+
+textarea {
+    /*this is called border shorthand, you apply all the border element in one line */
+    cursor: pointer;
+    border: 2px rgb(5, 90, 5) dotted;
+    width: 80%;
+    background-color: #c0767685;
+    border-radius: 10px;
+    color: rgb(0, 0, 0);
+    padding: 10%;
+    margin-right: 20px;
+}
+
+
+.banner{
+
+    margin-top: 30px;
+    cursor: pointer;
+    border-color:rgb(75, 7, 2);
+    border-radius: 5px;
+    width: 315px;
+    border-width: 2px;
+    color: #076b28;
+    text-align: center;
+}
+.Genbutton{
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 200px;
+    border: thick;
+    box-shadow: inset;
+    background-color:rgb(75, 7, 2);
+    width: 315px;
+    color:#fcfdfc;
+    height: 30px;
+
+}
+.downloadbutton{
+    margin-top: 5px;
+    cursor: pointer;
+    border-radius: 200px;
+    border: thick;
+    box-shadow: inset;
+    background-color:rgb(75, 7, 2);
+    width: 315px;
+    color:#fcfdfc;
+    height: 30px;
+}
+.result{
+     background-color:  rgba(241, 144, 131, 0.356);
+    border-radius: 20px;
+    border: 5px double rgb(85, 2, 2);
+    overflow: auto;
+}
+
+.homebody{
+    background-image: url('img.png');
+}
+.aboutbody{
+    background-color: rgb(240, 128, 128);;
+    text-align: center;
+}
+.backbutton{
+
+    background-color: rgba(121, 2, 2, 0.911);
+    border: none;
+    color: #fcfdfc;
+    background: #770606;
+    cursor: pointer;
+     outline-offset: 4px;
+     border-radius: 12px;
+}
+
+.aboutbut{
+    background-color: rgba(255, 0, 0, 0.144);
+    color: rgb(248, 30, 30);
+    background: #770606;
+    border: none;
+    border-radius: 15px;
+    padding: 8px;
+    height: 22%;
+}

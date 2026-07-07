@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>{{ .Title }}</title>
+    <!-- Step 1: in HTML <head> -->
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="homebody">
+    <div class="form">
+
+    <h1 class="head">{{ .Title }}</h1>
+
+    <form method="post" action="/ascii-art">
+        
+        <!-- <label class="label" for="text" >Enter Your Text Here: </label><br><br> -->
+
+        <textarea id="text" type="text" name="text" placeholder="Enter text..." required></textarea><br><br>
+
+        <select name="banner" id="banner" class="banner" required>
+            <option value="" selected hidden >--choose banner--</option>
+            <option value="standard.txt" {{if eq .Banner "standard"}} selected  {{end}} >standard</option>
+            <option value="shadow.txt" {{if eq .Banner "shadow"}} selected {{end}}>shadow</option>
+            <option value="thinkertoy.txt" {{if eq .Banner "thinkertoy"}} selected {{end}}>thinkertoy</option>
+
+        </select><br>
+
+        <button type="submit" class="Genbutton"><strong>Generate Art</strong></button>
+
+    </form>
+
+    <form method="get" action="/download">
+
+        <input type="hidden" name="text" value="{{.Text}}">
+        <input type="hidden" name="banner" value="{{.Banner}}">
+        <button class="downloadbutton" type="submit"><strong>Download</strong></button>
+    </form>
+
+    </div>
+    <a  href="/about"><button class="aboutbut"><strong>About</strong></button></a>
+    
+    <h1 class="headR">{{.ResultArea }}</h1>
+    <pre class="result">{{ .Result }}</pre>
+
+</body>
+</html>

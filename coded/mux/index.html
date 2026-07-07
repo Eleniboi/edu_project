@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--- the 'if' action treat "" string as false or any other 0 value, it is just like a boolean type-->
+
+    <ul>
+    {{range .Name}}
+    <li>{{.}}</li>
+    {{end}}
+
+    {{if .Active}}
+    <p>{{.Active}}</p>
+    {{end}}
+
+</body>
+</html>
